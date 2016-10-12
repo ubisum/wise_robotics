@@ -1,0 +1,11 @@
+#ifndef SQUARES_GUI_H
+#define SQUARES_GUI_H
+
+
+class squares_gui
+{
+public:
+    squares_gui();
+};
+
+#endif // SQUARES_GUI_H

@@ -1,0 +1,3 @@
+/Users/biagiomontesano/Documents/wise_robotics/test_app/build/CMakeFiles/edit_cache.dir
+/Users/biagiomontesano/Documents/wise_robotics/test_app/build/CMakeFiles/rebuild_cache.dir
+/Users/biagiomontesano/Documents/wise_robotics/test_app/build/CMakeFiles/BlurImage.dir
