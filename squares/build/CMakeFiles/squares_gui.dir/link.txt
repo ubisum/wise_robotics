@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11 -pthread   CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o  -o squares_gui  -L/usr/local/lib -rdynamic 
+/usr/bin/c++    -std=c++11 -pthread   CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o  -o squares_gui  -L/usr/local/lib -rdynamic -L/usr/local/lib -pthread -lwx_gtk2u_core-3.1 -lwx_baseu-3.1 -Wl,-rpath,/usr/local/lib 

@@ -9,6 +9,10 @@
 /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.cpp
 wx/wxprec.h
 -
+wx/image.h
+-
+wx/sizer.h
+-
 wx/wx.h
 -
 

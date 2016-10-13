@@ -21,5 +21,6 @@ target_link_libraries( squares ${OpenCV_LIBS} ${CURL_LIBS})
 target_link_libraries(squares curl)
 target_link_libraries(squares ${wxWidgets_LIBRARIES})
 target_link_libraries(squares_api ${wxWidgets_LIBRARIES})
+target_link_libraries(squares_gui ${wxWidgets_LIBRARIES})
 
 
