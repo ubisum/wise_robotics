@@ -9,6 +9,8 @@
 /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.cpp
 utilities.h
 /home/biagio/Documenti/wise_robotics/squares/src/utilities.h
+squares_gui.h
+/home/biagio/Documenti/wise_robotics/squares/src/squares_gui.h
 string
 -
 cstring
@@ -23,6 +25,16 @@ algorithm
 -
 iterator
 -
+wx/wxprec.h
+-
+wx/image.h
+-
+wx/sizer.h
+-
+wx/wx.h
+-
+
+/home/biagio/Documenti/wise_robotics/squares/src/squares_gui.h
 wx/wxprec.h
 -
 wx/image.h

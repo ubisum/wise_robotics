@@ -1,5 +1,6 @@
 
 #include "utilities.h"
+#include "squares_gui.h"
 
 #include <string>
 #include <cstring>
@@ -21,48 +22,11 @@
 
 #define POS_SAMPLES_DIR "positive_samples/"
 #define NEG_SAMPLES_DIR "negative_samples/"
-//#define OUTPUT_FOLDER "output_images/"
-#define OUTPUT_FOLDER "test/"
+#define OUTPUT_FOLDER "output_images/"
 
 using namespace std;
 using namespace utilities;
 
-class MyApp: public wxApp
-{
-public:
-    virtual bool OnInit();
-};
-
-
-class MyFrame: public wxFrame
-{
-public:
-    MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
-    wxButton *isTree;
-    wxButton *notTree;
-    wxPanel* panel;
-    wxStaticBitmap *image;
-
-
-private:
-    void OnExit(wxCommandEvent& event);
-    void OnAbout(wxCommandEvent& event);
-    void OnTreeClick(wxCommandEvent& event);
-    void OnNotTreeClick(wxCommandEvent& event);
-    void OnHello(wxCommandEvent& event);
-
-    int check_image;
-    vector<string> images_to_show;
-
-    wxDECLARE_EVENT_TABLE();
-};
-
-enum
-{
-    ID_Hello = 1,
-    BUTTON_isTree = wxID_HIGHEST + 1,
-    BUTTON_notTree = wxID_HIGHEST + 2,
-};
 
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
@@ -71,27 +35,23 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(wxID_ABOUT, MyFrame::OnAbout)
     EVT_BUTTON(BUTTON_isTree, MyFrame::OnTreeClick)
     EVT_BUTTON(BUTTON_notTree, MyFrame::OnNotTreeClick)
-    //EVT_PAINT(wxImagePanel::paintEvent)
+    EVT_CLOSE(MyFrame::OnClose)
 
 wxEND_EVENT_TABLE()
 wxIMPLEMENT_APP(MyApp);
 
-
-
-
 bool MyApp::OnInit()
 {
      wxInitAllImageHandlers();
-     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 
-    MyFrame *frame = new MyFrame( "Hello World", wxPoint(50, 50), wxSize(450, 340));
+    MyFrame *frame = new MyFrame( "Samples selection", wxPoint(50, 50), wxSize(450, 340));
     frame->Show( true );
     return true;
 }
 
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
-        : wxFrame(NULL, wxID_ANY, title, pos, size)
+        : wxFrame(NULL, wxID_ANY, title, pos, size, wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxSYSTEM_MENU | wxCAPTION | wxCLOSE_BOX | wxCLIP_CHILDREN)
 {
     // create file menu
     wxMenu *menuFile = new wxMenu;
@@ -122,7 +82,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
     // create and set menu bar
     CreateStatusBar();
-    SetStatusText( "Welcome to wxWidgets!" );
+    SetStatusText( "Welcome to Samples Selection!" );
 
     // initialize panel
     panel = new wxPanel(this, wxID_ANY);
@@ -133,7 +93,6 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
     // get images' names
     images_to_show = getFilesList(OUTPUT_FOLDER);
-    cout << "Images " << images_to_show.size() << endl << endl;
     if(images_to_show.size() < 1)
     {
         cout << "Could not retrieve images to show. Be sure that ./squares has been executed and output_images folder has been created. "
@@ -146,11 +105,10 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     check_image = 0;
 
     // prepare initial image
-    //wxImage* temporary_image = new wxImage("images/trees.jpg", wxBITMAP_TYPE_JPEG);
     wxImage* temporary_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image], wxBITMAP_TYPE_JPEG);
     temporary_image->Rescale(100, 100);
     image = new wxStaticBitmap(panel, 0, wxBitmap(*temporary_image), wxPoint(175, 110), wxSize(100, 100));
-    cout << "error" << endl;
+
     // delete directories from previous executions
     remove_directory(POS_SAMPLES_DIR);
     remove_directory(NEG_SAMPLES_DIR);
@@ -163,18 +121,33 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 void MyFrame::OnExit(wxCommandEvent& event)
 {
-    Close(true);
+    wxMessageDialog *dial = new wxMessageDialog(NULL,
+          wxT("Are you sure to quit? Process is not complete"), wxT("Attention"),
+          wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+
+      if(dial->ShowModal() == wxID_YES)
+         exit(-1);
+}
+
+void MyFrame::OnClose(wxCloseEvent &event)
+{
+    wxMessageDialog *dial = new wxMessageDialog(NULL,
+          wxT("Are you sure to quit? Process is not complete"), wxT("Attention"),
+          wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+
+      if(dial->ShowModal() == wxID_YES)
+          exit(-1);
 }
 
 void MyFrame::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox("This is a wxWidgets' Hello world sample",
-                  "About Hello World", wxOK | wxICON_INFORMATION);
+    wxMessageBox("Click left button if image contains a tree. Click right image, otherwise.",
+                  "Samples Selection", wxOK | wxICON_INFORMATION);
 }
 
 void MyFrame::OnHello(wxCommandEvent& event)
 {
-    wxLogMessage("Hello world from wxWidgets!");
+    wxLogMessage("Hello from Sample Selection!");
 }
 
 void MyFrame::OnTreeClick(wxCommandEvent& event)

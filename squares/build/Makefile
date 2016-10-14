@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/biagio/Documenti/wise_robotics/squares/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,32 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named squares
-
-# Build rule for target.
-squares: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 squares
-.PHONY : squares
-
-# fast build rule for target.
-squares/fast:
-	$(MAKE) -f CMakeFiles/squares.dir/build.make CMakeFiles/squares.dir/build
-.PHONY : squares/fast
-
-#=============================================================================
-# Target rules for targets named squares_api
-
-# Build rule for target.
-squares_api: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 squares_api
-.PHONY : squares_api
-
-# fast build rule for target.
-squares_api/fast:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/build
-.PHONY : squares_api/fast
-
-#=============================================================================
 # Target rules for targets named squares_gui
 
 # Build rule for target.
@@ -148,6 +122,19 @@ squares_gui: cmake_check_build_system
 squares_gui/fast:
 	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
 .PHONY : squares_gui/fast
+
+#=============================================================================
+# Target rules for targets named squares
+
+# Build rule for target.
+squares: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 squares
+.PHONY : squares
+
+# fast build rule for target.
+squares/fast:
+	$(MAKE) -f CMakeFiles/squares.dir/build.make CMakeFiles/squares.dir/build
+.PHONY : squares/fast
 
 src/squares.o: src/squares.cpp.o
 
@@ -175,33 +162,6 @@ src/squares.s: src/squares.cpp.s
 src/squares.cpp.s:
 	$(MAKE) -f CMakeFiles/squares.dir/build.make CMakeFiles/squares.dir/src/squares.cpp.s
 .PHONY : src/squares.cpp.s
-
-src/squares_api.o: src/squares_api.cpp.o
-
-.PHONY : src/squares_api.o
-
-# target to build an object file
-src/squares_api.cpp.o:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/src/squares_api.cpp.o
-.PHONY : src/squares_api.cpp.o
-
-src/squares_api.i: src/squares_api.cpp.i
-
-.PHONY : src/squares_api.i
-
-# target to preprocess a source file
-src/squares_api.cpp.i:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/src/squares_api.cpp.i
-.PHONY : src/squares_api.cpp.i
-
-src/squares_api.s: src/squares_api.cpp.s
-
-.PHONY : src/squares_api.s
-
-# target to generate assembly for a file
-src/squares_api.cpp.s:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/src/squares_api.cpp.s
-.PHONY : src/squares_api.cpp.s
 
 src/squares_gui.o: src/squares_gui.cpp.o
 
@@ -236,17 +196,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... squares"
-	@echo "... squares_api"
-	@echo "... squares_gui"
 	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... squares_gui"
+	@echo "... squares"
 	@echo "... src/squares.o"
 	@echo "... src/squares.i"
 	@echo "... src/squares.s"
-	@echo "... src/squares_api.o"
-	@echo "... src/squares_api.i"
-	@echo "... src/squares_api.s"
 	@echo "... src/squares_gui.o"
 	@echo "... src/squares_gui.i"
 	@echo "... src/squares_gui.s"

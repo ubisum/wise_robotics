@@ -60,6 +60,43 @@ CMAKE_SOURCE_DIR = /home/biagio/Documenti/wise_robotics/squares
 CMAKE_BINARY_DIR = /home/biagio/Documenti/wise_robotics/squares/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/squares_gui.dir
+
+# All Build rule for target.
+CMakeFiles/squares_gui.dir/all:
+	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/depend
+	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles --progress-num=3,4 "Built target squares_gui"
+.PHONY : CMakeFiles/squares_gui.dir/all
+
+# Include target in all.
+all: CMakeFiles/squares_gui.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/squares_gui.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/squares_gui.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 0
+.PHONY : CMakeFiles/squares_gui.dir/rule
+
+# Convenience name for target.
+squares_gui: CMakeFiles/squares_gui.dir/rule
+
+.PHONY : squares_gui
+
+# clean rule for target.
+CMakeFiles/squares_gui.dir/clean:
+	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/clean
+.PHONY : CMakeFiles/squares_gui.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/squares_gui.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/squares.dir
 
 # All Build rule for target.
@@ -93,80 +130,6 @@ CMakeFiles/squares.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/squares.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/squares_api.dir
-
-# All Build rule for target.
-CMakeFiles/squares_api.dir/all:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/depend
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles --progress-num=3,4 "Built target squares_api"
-.PHONY : CMakeFiles/squares_api.dir/all
-
-# Include target in all.
-all: CMakeFiles/squares_api.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/squares_api.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/squares_api.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 0
-.PHONY : CMakeFiles/squares_api.dir/rule
-
-# Convenience name for target.
-squares_api: CMakeFiles/squares_api.dir/rule
-
-.PHONY : squares_api
-
-# clean rule for target.
-CMakeFiles/squares_api.dir/clean:
-	$(MAKE) -f CMakeFiles/squares_api.dir/build.make CMakeFiles/squares_api.dir/clean
-.PHONY : CMakeFiles/squares_api.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/squares_api.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/squares_gui.dir
-
-# All Build rule for target.
-CMakeFiles/squares_gui.dir/all:
-	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/depend
-	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles --progress-num=5,6 "Built target squares_gui"
-.PHONY : CMakeFiles/squares_gui.dir/all
-
-# Include target in all.
-all: CMakeFiles/squares_gui.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/squares_gui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/squares_gui.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles 0
-.PHONY : CMakeFiles/squares_gui.dir/rule
-
-# Convenience name for target.
-squares_gui: CMakeFiles/squares_gui.dir/rule
-
-.PHONY : squares_gui
-
-# clean rule for target.
-CMakeFiles/squares_gui.dir/clean:
-	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/clean
-.PHONY : CMakeFiles/squares_gui.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/squares_gui.dir/clean
 
 .PHONY : clean
 

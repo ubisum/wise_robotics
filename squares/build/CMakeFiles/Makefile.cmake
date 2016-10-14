@@ -51,7 +51,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/squares.dir/DependInfo.cmake"
-  "CMakeFiles/squares_api.dir/DependInfo.cmake"
   "CMakeFiles/squares_gui.dir/DependInfo.cmake"
+  "CMakeFiles/squares.dir/DependInfo.cmake"
   )

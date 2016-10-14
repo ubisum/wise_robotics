@@ -1,5 +1,4 @@
-/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/edit_cache.dir
-/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares.dir
-/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares_api.dir
-/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares_gui.dir
 /home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/rebuild_cache.dir
+/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/edit_cache.dir
+/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares_gui.dir
+/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares.dir
