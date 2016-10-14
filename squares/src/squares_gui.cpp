@@ -1,14 +1,31 @@
 
+#include "utilities.h"
 
-// For compilers that support precompilation, includes "wx/wx.h".
+#include <string>
+#include <cstring>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <iterator>
+
 #include <wx/wxprec.h>
 #include <wx/image.h>
 #include <wx/sizer.h>
 
+// For compilers that support precompilation, includes "wx/wx.h"
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
 
+
+#define POS_SAMPLES_DIR "positive_samples/"
+#define NEG_SAMPLES_DIR "negative_samples/"
+//#define OUTPUT_FOLDER "output_images/"
+#define OUTPUT_FOLDER "test/"
+
+using namespace std;
+using namespace utilities;
 
 class MyApp: public wxApp
 {
@@ -24,7 +41,7 @@ public:
     wxButton *isTree;
     wxButton *notTree;
     wxPanel* panel;
-    wxImage frame_image;
+    wxStaticBitmap *image;
 
 
 private:
@@ -33,6 +50,9 @@ private:
     void OnTreeClick(wxCommandEvent& event);
     void OnNotTreeClick(wxCommandEvent& event);
     void OnHello(wxCommandEvent& event);
+
+    int check_image;
+    vector<string> images_to_show;
 
     wxDECLARE_EVENT_TABLE();
 };
@@ -107,20 +127,51 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     // initialize panel
     panel = new wxPanel(this, wxID_ANY);
 
+    // insert buttons
     isTree = new wxButton(panel, BUTTON_isTree, _T("It's a tree!!!!!"), wxPoint(0,275), wxSize(225,40), 0  );
     notTree = new wxButton(panel, BUTTON_notTree, _T("It's not a tree"), wxPoint(225,275), wxSize(225,40), 0  );
-    //frame_image.AddHandler(new wxJPEGHandler);
-    //frame_image.LoadFile("images/image.jpg", wxBITMAP_TYPE_JPEG);
+
+    // get images' names
+    images_to_show = getFilesList(OUTPUT_FOLDER);
+    cout << "Images " << images_to_show.size() << endl << endl;
+    if(images_to_show.size() < 1)
+    {
+        cout << "Could not retrieve images to show. Be sure that ./squares has been executed and output_images folder has been created. "
+                "Check permissions." << endl << endl;
+
+        exit(-1);
+    }
+
+    // set images' index
+    check_image = 0;
+
+    // prepare initial image
+    //wxImage* temporary_image = new wxImage("images/trees.jpg", wxBITMAP_TYPE_JPEG);
+    wxImage* temporary_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image], wxBITMAP_TYPE_JPEG);
+    temporary_image->Rescale(100, 100);
+    image = new wxStaticBitmap(panel, 0, wxBitmap(*temporary_image), wxPoint(175, 110), wxSize(100, 100));
+    cout << "error" << endl;
+    // delete directories from previous executions
+    remove_directory(POS_SAMPLES_DIR);
+    remove_directory(NEG_SAMPLES_DIR);
+
+    // recreate directories
+    mkdir(POS_SAMPLES_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);
+    mkdir(NEG_SAMPLES_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);
+
 }
+
 void MyFrame::OnExit(wxCommandEvent& event)
 {
-    Close( true );
+    Close(true);
 }
+
 void MyFrame::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox( "This is a wxWidgets' Hello world sample",
-                  "About Hello World", wxOK | wxICON_INFORMATION );
+    wxMessageBox("This is a wxWidgets' Hello world sample",
+                  "About Hello World", wxOK | wxICON_INFORMATION);
 }
+
 void MyFrame::OnHello(wxCommandEvent& event)
 {
     wxLogMessage("Hello world from wxWidgets!");
@@ -128,10 +179,80 @@ void MyFrame::OnHello(wxCommandEvent& event)
 
 void MyFrame::OnTreeClick(wxCommandEvent& event)
 {
+    // open input stream
+    string concat_input = OUTPUT_FOLDER + images_to_show[check_image];
+    ifstream source(concat_input.c_str(), ios::binary);
 
+    // open output stream
+    string concat_output = POS_SAMPLES_DIR + images_to_show[check_image];
+    ofstream dest(concat_output.c_str(), ios::binary);
+
+    // declare iterators
+    istreambuf_iterator<char> begin_source(source);
+    istreambuf_iterator<char> end_source;
+    ostreambuf_iterator<char> begin_dest(dest);
+
+    // copy file
+    copy(begin_source, end_source, begin_dest);
+
+    // close streams
+    source.close();
+    dest.close();
+
+    // check whether image needs to be updated
+    if(check_image < images_to_show.size() - 1)
+    {
+        // update image
+        wxImage* next_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
+        next_image->Rescale(100, 100);
+        image = new wxStaticBitmap(panel, 0, wxBitmap(*next_image), wxPoint(175, 110), wxSize(100, 100));
+        check_image++;
+    }
+
+    else
+    {
+        // close interface
+        cout << "Images written to correspondent folders" << endl << endl;
+        Close(true);
+    }
 }
 
 void MyFrame::OnNotTreeClick(wxCommandEvent& event)
 {
+    // open input stream
+    string concat_input = OUTPUT_FOLDER + images_to_show[check_image];
+    ifstream source(concat_input.c_str(), ios::binary);
 
+    // open output stream
+    string concat_output = NEG_SAMPLES_DIR + images_to_show[check_image];
+    ofstream dest(concat_output.c_str(), ios::binary);
+
+    // declare iterators
+    istreambuf_iterator<char> begin_source(source);
+    istreambuf_iterator<char> end_source;
+    ostreambuf_iterator<char> begin_dest(dest);
+
+    // copy file
+    copy(begin_source, end_source, begin_dest);
+
+    // close streams
+    source.close();
+    dest.close();
+
+    // check whether image needs to be updated
+    if(check_image < images_to_show.size() - 1)
+    {
+        // update image
+        wxImage* next_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
+        next_image->Rescale(100, 100);
+        image = new wxStaticBitmap(panel, 0, wxBitmap(*next_image), wxPoint(175, 110), wxSize(100, 100));
+        check_image++;
+    }
+
+    else
+    {
+        // close interface
+        cout << "Images written to correspondent folders" << endl << endl;
+        Close(true);
+    }
 }

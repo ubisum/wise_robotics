@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -pthread
 
 CXX_DEFINES = -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__
 
-CXX_INCLUDES = -isystem /usr/local/lib/wx/include/gtk2-unicode-3.1 -isystem /usr/local/include/wx-3.1 -I/usr/local/include -I/usr/local/include/opencv 
+CXX_INCLUDES = -isystem /usr/local/lib/wx/include/gtk2-unicode-3.1 -isystem /usr/local/include/wx-3.1 -isystem /usr/local/include -isystem /usr/local/include/opencv 
 

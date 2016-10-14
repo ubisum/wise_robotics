@@ -90,6 +90,22 @@ squares_gui_EXTERNAL_OBJECTS =
 
 squares_gui: CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o
 squares_gui: CMakeFiles/squares_gui.dir/build.make
+squares_gui: /usr/local/lib/libopencv_shape.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_stitching.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_superres.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_videostab.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_objdetect.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_calib3d.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_features2d.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_flann.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_highgui.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_ml.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_photo.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_video.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_videoio.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_imgcodecs.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_imgproc.so.3.1.0
+squares_gui: /usr/local/lib/libopencv_core.so.3.1.0
 squares_gui: CMakeFiles/squares_gui.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable squares_gui"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/squares_gui.dir/link.txt --verbose=$(VERBOSE)
