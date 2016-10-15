@@ -23,8 +23,7 @@
 
 #define POS_SAMPLES_DIR "positive_samples/"
 #define NEG_SAMPLES_DIR "negative_samples/"
-//#define OUTPUT_FOLDER "output_images/"
-#define SOURCE_FOLDER OUTPUT_FOLDER + "/"
+#define SOURCE_FOLDER OUTPUT_FOLDER "/"
 
 using namespace std;
 using namespace utilities;
