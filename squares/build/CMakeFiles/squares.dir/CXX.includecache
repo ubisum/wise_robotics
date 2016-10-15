@@ -17,6 +17,10 @@ fstream
 -
 cstring
 -
+stdlib.h
+-
+
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
 
 /home/biagio/Documenti/wise_robotics/squares/src/squares.cpp
 utilities.h
@@ -25,6 +29,8 @@ web_utils.h
 /home/biagio/Documenti/wise_robotics/squares/src/web_utils.h
 csv.h
 /home/biagio/Documenti/wise_robotics/squares/src/csv.h
+macros.h
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
 opencv2/imgproc/imgproc.hpp
 /home/biagio/Documenti/wise_robotics/squares/src/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp

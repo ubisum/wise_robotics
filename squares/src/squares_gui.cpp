@@ -1,6 +1,7 @@
 
 #include "utilities.h"
 #include "squares_gui.h"
+#include "macros.h"
 
 #include <string>
 #include <cstring>
@@ -22,7 +23,8 @@
 
 #define POS_SAMPLES_DIR "positive_samples/"
 #define NEG_SAMPLES_DIR "negative_samples/"
-#define OUTPUT_FOLDER "output_images/"
+//#define OUTPUT_FOLDER "output_images/"
+#define SOURCE_FOLDER OUTPUT_FOLDER + "/"
 
 using namespace std;
 using namespace utilities;
@@ -92,7 +94,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     notTree = new wxButton(panel, BUTTON_notTree, _T("It's not a tree"), wxPoint(225,275), wxSize(225,40), 0  );
 
     // get images' names
-    images_to_show = getFilesList(OUTPUT_FOLDER);
+    images_to_show = getFilesList(SOURCE_FOLDER);
     if(images_to_show.size() < 1)
     {
         cout << "Could not retrieve images to show. Be sure that ./squares has been executed and output_images folder has been created. "
@@ -105,7 +107,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     check_image = 0;
 
     // prepare initial image
-    wxImage* temporary_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image], wxBITMAP_TYPE_JPEG);
+    wxImage* temporary_image = new wxImage(string(SOURCE_FOLDER) + images_to_show[check_image], wxBITMAP_TYPE_JPEG);
     temporary_image->Rescale(100, 100);
     image = new wxStaticBitmap(panel, 0, wxBitmap(*temporary_image), wxPoint(175, 110), wxSize(100, 100));
 
@@ -153,7 +155,7 @@ void MyFrame::OnHello(wxCommandEvent& event)
 void MyFrame::OnTreeClick(wxCommandEvent& event)
 {
     // open input stream
-    string concat_input = OUTPUT_FOLDER + images_to_show[check_image];
+    string concat_input = SOURCE_FOLDER + images_to_show[check_image];
     ifstream source(concat_input.c_str(), ios::binary);
 
     // open output stream
@@ -176,7 +178,7 @@ void MyFrame::OnTreeClick(wxCommandEvent& event)
     if(check_image < images_to_show.size() - 1)
     {
         // update image
-        wxImage* next_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
+        wxImage* next_image = new wxImage(string(SOURCE_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
         next_image->Rescale(100, 100);
         image = new wxStaticBitmap(panel, 0, wxBitmap(*next_image), wxPoint(175, 110), wxSize(100, 100));
         check_image++;
@@ -193,7 +195,7 @@ void MyFrame::OnTreeClick(wxCommandEvent& event)
 void MyFrame::OnNotTreeClick(wxCommandEvent& event)
 {
     // open input stream
-    string concat_input = OUTPUT_FOLDER + images_to_show[check_image];
+    string concat_input = SOURCE_FOLDER + images_to_show[check_image];
     ifstream source(concat_input.c_str(), ios::binary);
 
     // open output stream
@@ -216,7 +218,7 @@ void MyFrame::OnNotTreeClick(wxCommandEvent& event)
     if(check_image < images_to_show.size() - 1)
     {
         // update image
-        wxImage* next_image = new wxImage(string(OUTPUT_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
+        wxImage* next_image = new wxImage(string(SOURCE_FOLDER) + images_to_show[check_image+1], wxBITMAP_TYPE_JPEG);
         next_image->Rescale(100, 100);
         image = new wxStaticBitmap(panel, 0, wxBitmap(*next_image), wxPoint(175, 110), wxSize(100, 100));
         check_image++;

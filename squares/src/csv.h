@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -100,6 +101,68 @@ namespace utilities
 		
 		return output;
 	}
+
+        vector<coordinate> readCoordinates(string file_path)
+        {
+            // open stream
+            ifstream csv_fid(file_path.c_str());
+
+            // create a support string
+            string support;
+
+            vector<coordinate> read_coordinates;
+
+            while(getline(csv_fid, support))
+            {
+                cout << "String size " << support.length() << endl;
+                if(support.length() > 0 && support.at(0) != '\n')
+                {
+
+                    // prepare a pair
+                    coordinate coord;
+
+                    // get first string
+                    char converted_string[support.length()];
+                    support.copy(converted_string, support.length());
+                    char* current_string = strtok(converted_string, ", ");
+                    cout << current_string << endl;
+
+                    // convert and store
+                    double conversion_result = atof(current_string);
+                    if(conversion_result == 0.0)
+                    {
+                        cout << "No valid conversion could be performed from CSV file. "
+                                "Please, check that file is correctly formatted" << endl;
+
+                        exit(-1);
+                    }
+
+                    coord.first = (float)conversion_result;
+                    current_string = strtok(NULL, ", \n");
+                    cout << current_string << endl << endl;
+
+                    if(current_string != NULL)
+                    {
+                        conversion_result = atof(current_string);
+                        if(conversion_result == 0.0)
+                        {
+                            cout << "No valid conversion could be performed from CSV file. "
+                                    "Please, check that file is correctly formatted" << endl;
+
+                            exit(-1);
+                        }
+
+                        coord.second = conversion_result;
+                    }
+
+                    read_coordinates.push_back(coord);
+
+                }
+                }
+
+
+            return read_coordinates;
+        }
 }
 
 #endif

@@ -6,11 +6,15 @@
 
 #IncludeRegexTransform: 
 
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
+
 /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.cpp
 utilities.h
 /home/biagio/Documenti/wise_robotics/squares/src/utilities.h
 squares_gui.h
 /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.h
+macros.h
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
 string
 -
 cstring
