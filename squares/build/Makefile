@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/biagio/Documenti/wise_robotics/squares/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named squares_gui
-
-# Build rule for target.
-squares_gui: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 squares_gui
-.PHONY : squares_gui
-
-# fast build rule for target.
-squares_gui/fast:
-	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
-.PHONY : squares_gui/fast
-
-#=============================================================================
 # Target rules for targets named squares
 
 # Build rule for target.
@@ -135,6 +122,32 @@ squares: cmake_check_build_system
 squares/fast:
 	$(MAKE) -f CMakeFiles/squares.dir/build.make CMakeFiles/squares.dir/build
 .PHONY : squares/fast
+
+#=============================================================================
+# Target rules for targets named train
+
+# Build rule for target.
+train: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 train
+.PHONY : train
+
+# fast build rule for target.
+train/fast:
+	$(MAKE) -f CMakeFiles/train.dir/build.make CMakeFiles/train.dir/build
+.PHONY : train/fast
+
+#=============================================================================
+# Target rules for targets named squares_gui
+
+# Build rule for target.
+squares_gui: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 squares_gui
+.PHONY : squares_gui
+
+# fast build rule for target.
+squares_gui/fast:
+	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
+.PHONY : squares_gui/fast
 
 src/squares.o: src/squares.cpp.o
 
@@ -190,22 +203,53 @@ src/squares_gui.cpp.s:
 	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/src/squares_gui.cpp.s
 .PHONY : src/squares_gui.cpp.s
 
+src/train.o: src/train.cpp.o
+
+.PHONY : src/train.o
+
+# target to build an object file
+src/train.cpp.o:
+	$(MAKE) -f CMakeFiles/train.dir/build.make CMakeFiles/train.dir/src/train.cpp.o
+.PHONY : src/train.cpp.o
+
+src/train.i: src/train.cpp.i
+
+.PHONY : src/train.i
+
+# target to preprocess a source file
+src/train.cpp.i:
+	$(MAKE) -f CMakeFiles/train.dir/build.make CMakeFiles/train.dir/src/train.cpp.i
+.PHONY : src/train.cpp.i
+
+src/train.s: src/train.cpp.s
+
+.PHONY : src/train.s
+
+# target to generate assembly for a file
+src/train.cpp.s:
+	$(MAKE) -f CMakeFiles/train.dir/build.make CMakeFiles/train.dir/src/train.cpp.s
+.PHONY : src/train.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... squares_gui"
 	@echo "... squares"
+	@echo "... train"
+	@echo "... squares_gui"
+	@echo "... rebuild_cache"
 	@echo "... src/squares.o"
 	@echo "... src/squares.i"
 	@echo "... src/squares.s"
 	@echo "... src/squares_gui.o"
 	@echo "... src/squares_gui.i"
 	@echo "... src/squares_gui.s"
+	@echo "... src/train.o"
+	@echo "... src/train.i"
+	@echo "... src/train.s"
 .PHONY : help
 
 

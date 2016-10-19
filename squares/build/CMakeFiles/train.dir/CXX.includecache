@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
+
+/home/biagio/Documenti/wise_robotics/squares/src/train.cpp
+train.h
+/home/biagio/Documenti/wise_robotics/squares/src/train.h
+macros.h
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
+stdio.h
+-
+string
+-
+iostream
+-
+sstream
+-
+
+/home/biagio/Documenti/wise_robotics/squares/src/train.h
+iostream
+-
+stdexcept
+-
+stdio.h
+-
+string
+-
+

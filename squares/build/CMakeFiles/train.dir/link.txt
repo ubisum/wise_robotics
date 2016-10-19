@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -pthread   CMakeFiles/train.dir/src/train.cpp.o  -o train  -L/usr/local/lib -rdynamic 
