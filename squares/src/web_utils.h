@@ -4,6 +4,7 @@
 #include <iostream>
 #include <curl/curl.h>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 

@@ -61,6 +61,14 @@ sys/stat.h
 -
 cstring
 -
+algorithm
+-
+cmath
+-
+web_utils.h
+/home/biagio/Documenti/wise_robotics/squares/src/web_utils.h
+macros.h
+/home/biagio/Documenti/wise_robotics/squares/src/macros.h
 opencv2/imgproc/imgproc.hpp
 /home/biagio/Documenti/wise_robotics/squares/src/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
@@ -72,6 +80,8 @@ iostream
 curl/curl.h
 -
 algorithm
+-
+sstream
 -
 
 /usr/local/include/opencv/cxcore.h

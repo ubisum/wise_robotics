@@ -9,6 +9,12 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <cstring>
+#include <algorithm>
+#include <cmath>
+#include "web_utils.h"
+#include "macros.h"
+
+#define _USE_MATH_DEFINES
 
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -18,7 +24,18 @@ using namespace cv;
 
 namespace utilities
 {
+
 typedef vector<Mat> vectorOfMats;
+
+struct fileInfo
+{
+    float lat;
+    float lon;
+    int counter;
+    int index_x;
+    int index_y;
+    int square_size;
+};
 
 int remove_directory(const char *path)
 {
@@ -260,33 +277,170 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         }
 }
 	
-void getSquaresInFolder(string folder_path, int square_side, int square_step_row, int square_step_col, string output_path)
-{
-        // get files in requested folder
-        vector<string> filesInFolder = getFilesList(folder_path);
+    void getSquaresInFolder(string folder_path, int square_side, int square_step_row, int square_step_col, string output_path)
+    {
+            // get files in requested folder
+            vector<string> filesInFolder = getFilesList(folder_path);
 
-        // extract squares iteratively
-        for(int counter = 0; counter<filesInFolder.size(); counter++)
+            // extract squares iteratively
+            for(int counter = 0; counter<filesInFolder.size(); counter++)
+            {
+                    // get a files's name
+                    string current_string = filesInFolder[counter];
+                    cout << "Processing image " << folder_path << "/" << current_string << " ..." << endl;
+
+                    // get file's name without extension
+                    char converted_string[current_string.length()];
+                    current_string.copy(converted_string, current_string.length());
+                    char* no_extension = strtok(converted_string, ".");
+
+                    // compute squares
+                    stringstream complete_name;
+                    complete_name << folder_path << "/" << current_string;
+                    getSquaresFromImage(complete_name.str(), square_side, square_step_row, square_step_col, output_path, string(no_extension));
+
+                    // notify end of iteration
+                    cout << "Done" << endl << endl;
+
+            }
+    }
+
+    void createLUT()
+    {
+        // create table
+        Mat lut(19,1, CV_32F);
+
+        // fill table
+        lut.at<float>(0,0) = 78271.52;
+        lut.at<float>(1,0) = 39135.76;
+        lut.at<float>(2,0) = 19567.88;
+        lut.at<float>(3,0) = 9783.94;
+        lut.at<float>(4,0) = 4891.97;
+        lut.at<float>(5,0) = 2445.98;
+        lut.at<float>(6,0) = 1222.99;
+        lut.at<float>(7,0) = 611.50;
+        lut.at<float>(8,0) = 305.75;
+        lut.at<float>(9,0) = 152.87;
+        lut.at<float>(10,0) = 76.44;
+        lut.at<float>(11,0) = 38.22;
+        lut.at<float>(12,0) = 19.11;
+        lut.at<float>(13,0) = 9.55;
+        lut.at<float>(14,0) = 4.78;
+        lut.at<float>(15,0) = 2.39;
+        lut.at<float>(16,0) = 1.19;
+        lut.at<float>(17,0) = 0.60;
+        lut.at<float>(18,0) = 0.30;
+
+        // write table
+        FileStorage fs(LUT_NAME, FileStorage::WRITE);
+        fs << "lut" << lut;
+
+    }
+
+    Mat readLUT()
+    {
+        // prepare output
+        Mat output;
+
+        // read and store
+        FileStorage fs(LUT_NAME, FileStorage::READ);
+        fs["lut"] >> output;
+
+        //return matrix
+        return output;
+    }
+
+    coordinate pixelToLatLong(coordinate center, int x, int y, const Mat& lut)
+    {
+        // meters per pixel
+        float m_pixel = lut.at<float>(0, ZOOM_LEVEL-1);
+
+        // compute offsets
+        float offset_x = (x-center.first)*m_pixel;
+        float offset_y = (y-center.second)*m_pixel;
+
+        // offsets in radians
+        float dLat = offset_x/EARTH_RADIUS;
+        float dLon = offset_y/(EARTH_RADIUS*cos(M_PI*center.first/180));
+
+        // new lat and lon
+        float pixel_lat = center.first + dLat*180/M_PI;
+        float pixel_lon = center.second + dLon*180/M_PI;
+
+        // return coordinate
+        return coordinate(pixel_lat, pixel_lon);
+    }
+
+    fileInfo getFileInfo(string file_name)
+    {
+        // prepare structures
+        char buffer[file_name.length()];
+        file_name.copy(buffer, file_name.length());
+        char* pointer;
+
+        // output
+        fileInfo info;
+
+        // loop over information in file's name
+        for(int i = 0; i<6; i++)
         {
-                // get a files's name
-                string current_string = filesInFolder[counter];
-                cout << "Processing image " << folder_path << "/" << current_string << " ..." << endl;
+            switch (i)
+            {
+                case 0:
+                    {
+                        pointer = strtok(buffer, "_");
+                        string lat_string(pointer);
+                        replace(lat_string.begin(), lat_string.end(), 'x', '.');
+                        info.lat = (float)atof(lat_string.c_str());
+                        break;
+                    }
 
-                // get file's name without extension
-                char converted_string[current_string.length()];
-                current_string.copy(converted_string, current_string.length());
-                char* no_extension = strtok(converted_string, ".");
+                case 1:
+                    {
+                        pointer = strtok(NULL, "_");
+                        string lon_string(pointer);
+                        replace(lon_string.begin(), lon_string.end(), 'x', '.');
+                        info.lon = (float)atof(lon_string.c_str());
+                        break;
+                     }
 
-                // compute squares
-                stringstream complete_name;
-                complete_name << folder_path << "/" << current_string;
-                getSquaresFromImage(complete_name.str(), square_side, square_step_row, square_step_col, output_path, string(no_extension));
+                case 2:
+                    {
+                        pointer = strtok(NULL, "_");
+                        string cnt(pointer);
+                        info.counter = atoi(cnt.c_str());
+                        break;
+                    }
 
-                // notify end of iteration
-                cout << "Done" << endl;
+                case 3:
+                    {
+                        pointer = strtok(NULL, "_");
+                        string index(pointer);
+                        info.index_x = atoi(index.c_str());
+                        break;
+                    }
+
+                case 4:
+                    {
+                        pointer = strtok(NULL, "_");
+                        string index(pointer);
+                        info.index_y = atoi(index.c_str());
+                        break;
+                    }
+
+                default:
+                    {
+                        pointer = strtok(NULL, ".");
+                        string size(pointer);
+                        info.square_size = atoi(size.c_str());
+                        break;
+                     }
+            }
 
         }
-}
+
+        return info;
+    }
 }
 
 #endif

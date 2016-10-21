@@ -5,6 +5,7 @@ CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: ../src/macros.h
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: ../src/squares_gui.cpp
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: ../src/squares_gui.h
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: ../src/utilities.h
+CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: ../src/web_utils.h
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h
