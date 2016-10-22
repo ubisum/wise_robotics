@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/biagio/Documenti/wise_robotics/squares/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -124,6 +124,19 @@ squares/fast:
 .PHONY : squares/fast
 
 #=============================================================================
+# Target rules for targets named squares_gui
+
+# Build rule for target.
+squares_gui: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 squares_gui
+.PHONY : squares_gui
+
+# fast build rule for target.
+squares_gui/fast:
+	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
+.PHONY : squares_gui/fast
+
+#=============================================================================
 # Target rules for targets named train
 
 # Build rule for target.
@@ -137,17 +150,17 @@ train/fast:
 .PHONY : train/fast
 
 #=============================================================================
-# Target rules for targets named squares_gui
+# Target rules for targets named tests
 
 # Build rule for target.
-squares_gui: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 squares_gui
-.PHONY : squares_gui
+tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
 
 # fast build rule for target.
-squares_gui/fast:
-	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/build
-.PHONY : squares_gui/fast
+tests/fast:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
+.PHONY : tests/fast
 
 src/squares.o: src/squares.cpp.o
 
@@ -203,6 +216,33 @@ src/squares_gui.cpp.s:
 	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/src/squares_gui.cpp.s
 .PHONY : src/squares_gui.cpp.s
 
+src/test.o: src/test.cpp.o
+
+.PHONY : src/test.o
+
+# target to build an object file
+src/test.cpp.o:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.o
+.PHONY : src/test.cpp.o
+
+src/test.i: src/test.cpp.i
+
+.PHONY : src/test.i
+
+# target to preprocess a source file
+src/test.cpp.i:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.i
+.PHONY : src/test.cpp.i
+
+src/test.s: src/test.cpp.s
+
+.PHONY : src/test.s
+
+# target to generate assembly for a file
+src/test.cpp.s:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.s
+.PHONY : src/test.cpp.s
+
 src/train.o: src/train.cpp.o
 
 .PHONY : src/train.o
@@ -236,17 +276,21 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... squares"
-	@echo "... train"
-	@echo "... squares_gui"
 	@echo "... rebuild_cache"
+	@echo "... squares_gui"
+	@echo "... train"
+	@echo "... edit_cache"
+	@echo "... tests"
 	@echo "... src/squares.o"
 	@echo "... src/squares.i"
 	@echo "... src/squares.s"
 	@echo "... src/squares_gui.o"
 	@echo "... src/squares_gui.i"
 	@echo "... src/squares_gui.s"
+	@echo "... src/test.o"
+	@echo "... src/test.i"
+	@echo "... src/test.s"
 	@echo "... src/train.o"
 	@echo "... src/train.i"
 	@echo "... src/train.s"

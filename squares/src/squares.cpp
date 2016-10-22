@@ -29,6 +29,8 @@ int main(int argn, char* argv[])
 
         // read centers' coordinates
         vector<coordinate> centers = readCoordinates(argv[1]);
+        vector<coordinate> centers_test;
+        centers_test.push_back(centers[1]);
 
 	// remove output directories from previous execution
 	remove_directory(OUTPUT_FOLDER);
@@ -40,6 +42,7 @@ int main(int argn, char* argv[])
 
         // download images
         //getImagesFromCoordinates(centers, DOWNLOAD_FOLDER, ZOOM_LEVEL, BING_KEY);
+        getImagesFromCoordinates(centers_test, DOWNLOAD_FOLDER, ZOOM_LEVEL, BING_KEY);
 
 	// compute squares in images
 	getSquaresInFolder(DOWNLOAD_FOLDER, SQUARE_SIDE, SQUARE_STEP_ROW, SQUARE_STEP_COL, OUTPUT_FOLDER);

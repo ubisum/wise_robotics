@@ -384,7 +384,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         // loop over information in file's name
         for(int i = 0; i<6; i++)
         {
-            switch (i)
+            switch(i)
             {
                 case 0:
                     {
@@ -440,6 +440,59 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         }
 
         return info;
+    }
+
+    void printCentersOfSquares(vector<fileInfo> info_vector, string file_name)
+    {
+        // open and prepare file
+        remove(file_name.c_str());
+        FILE* fid = fopen(file_name.c_str(), "a");
+
+        // get LUT
+        Mat lookuptable = readLUT();
+
+        // loop over vector's elements
+        for(int i = 0; i<info_vector.size(); i++)
+        {
+            // get info of a square
+            fileInfo info = info_vector[i];
+
+            // estimate position of square's center
+            int pixel_x = (int)floor((info.index_x + info.square_size)/2);
+            int pixel_y = (int)floor((info.index_y + info.square_size)/2);
+
+            // get coordinates of square's center
+            coordinate square_center_coords = pixelToLatLong(coordinate(info.lat, info.lon), pixel_x, pixel_y, lookuptable);
+
+            // write to file
+            stringstream ss;
+            ss << square_center_coords.first << "," << square_center_coords.second << ",";
+            if(i<info_vector.size()-1)
+                ss << "\n";
+
+            fputs(ss.str().c_str(), fid);
+        }
+
+        fclose(fid);
+    }
+
+    vector<fileInfo> getInfoFromImages(string folder_path)
+    {
+        // output vector
+        vector<fileInfo> info_vector;
+
+        // get list of files
+        vector<string> list_of_files = getFilesList(folder_path);
+
+        // loop over list of files
+        for(int i = 0; i<list_of_files.size(); i++)
+        {
+            fileInfo info = getFileInfo(list_of_files[i]);
+            info_vector.push_back(info);
+        }
+
+        // return output
+        return info_vector;
     }
 }
 
