@@ -13,6 +13,8 @@
 #define BING_KEY "AkNXb92bZ-WiPqH4BmlhYj_piINlOW_rpon5CPEZ8xuhNXUdxhsKeKw6NRpN0ACC"
 
 // samples creation
+#define POS_SAMPLES "positive_samples"
+#define NEG_SAMPLES "negative_samples"
 #define POS_SAMPLES_TXT "find ./positive_samples -iname " "*.jpg" "> positives.txt"
 #define NEG_SAMPLES_TXT "find ./negative_samples -iname " "*.jpg" "> negatives.txt"
 #define PERL_SCRIPT_CMD "perl tools/createsamples.pl positives.txt negatives.txt samples "

@@ -8,9 +8,13 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <time.h>
 #include <cstring>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <fstream>
+
 #include "web_utils.h"
 #include "macros.h"
 
@@ -25,8 +29,6 @@ using namespace cv;
 namespace utilities
 {
 
-typedef vector<Mat> vectorOfMats;
-
 struct fileInfo
 {
     float lat;
@@ -37,6 +39,7 @@ struct fileInfo
     int square_size;
 };
 
+// deletes a directory and its contents
 int remove_directory(const char *path)
 {
     // global variables
@@ -448,6 +451,20 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         remove(file_name.c_str());
         FILE* fid = fopen(file_name.c_str(), "a");
 
+        // check whether LUT has already been created
+        FILE* check_lut = fopen(LUT_NAME, "r");
+
+        // create LUT, if necessary
+        if(check_lut == NULL)
+        {
+            cout << "No LUT found." << endl << "Creating LUT..." << endl;
+            createLUT();
+            cout << "Done." << endl << endl;
+        }
+
+        else
+            fclose(check_lut);
+
         // get LUT
         Mat lookuptable = readLUT();
 
@@ -476,6 +493,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         fclose(fid);
     }
 
+    // retireves information about an image from its name
     vector<fileInfo> getInfoFromImages(string folder_path)
     {
         // output vector
@@ -493,6 +511,158 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
 
         // return output
         return info_vector;
+    }
+
+    // checks whether a directory exists
+    bool dirExists(const char* path)
+    {
+        struct stat info;
+
+        if(stat(path, &info) != 0)
+            return false;
+        else if(info.st_mode & S_IFDIR)
+            return true;
+        else
+            return false;
+    }
+
+    // get date and time in string format
+    string getTime()
+    {
+        time_t rawtime;
+        struct tm * timeinfo;
+        char buffer [80];
+
+        time (&rawtime);
+        timeinfo = localtime (&rawtime);
+
+        strftime (buffer,80,"%d_%m_%G_%I_%M_%S",timeinfo);
+        return string(buffer);
+    }
+
+    // reverse string
+    string reverseString(string source)
+    {
+        if(source.length() > 1)
+        {
+            // create a buffer
+            char buffer[source.length()+1];
+            buffer[source.length()] = '\0';
+
+            // copy string into buffer
+            source.copy(buffer, source.length());
+
+            // declare two pointers
+            int head = 0;
+            int tail = source.length()-1;
+
+            // reversing loop
+            while(head < tail)
+            {
+                char temp_char = buffer[head];
+                buffer[head] = buffer[tail];
+                buffer[tail] = temp_char;
+
+                head++;
+                tail--;
+            }
+
+            // return reversed string
+            return string(buffer);
+
+        }
+
+        else
+            // return a copy of input
+            return string(source);
+
+    }
+
+    // isolate name of innermost directory in a path
+    string nameOfInnermostDirectory(string path)
+    {
+        // reverse string
+        string reversed_string = reverseString(path);
+
+        // prepare a buffer
+        char buffer[path.length()+1];
+        reversed_string.copy(buffer, reversed_string.length());
+        buffer[path.length()] = '\0';
+        if(buffer[0] == '/')
+        {
+            cout << "Invalid path " << path << ". Directory path should not end with a backslash character." << endl;
+            exit(-1);
+        }
+
+        // pointer to token
+        char* token_pointer;
+
+        // get first token
+        token_pointer = strtok(buffer, "/");
+        if(token_pointer == NULL)
+        {
+            cout << "Invalid path " << path << endl;
+            exit(-1);
+        }
+        // return name of directory
+        return reverseString(string(token_pointer));
+
+
+    }
+
+
+    void saveCurrentState(string source_dir)
+    {
+        // if directory exists, state needs to be saved
+        if(dirExists(source_dir.c_str()))
+        {
+            // directory found
+            cout << "Found directory " << source_dir << endl;
+            cout << "State is going to be saved" << endl;
+
+            // get time and date
+            string current_datetime = getTime();
+
+            // get list of files in source directory
+            vector<string> listOfFiles = getFilesList(source_dir);
+
+            // compose name of new directory
+            stringstream ss_dir;
+            ss_dir << nameOfInnermostDirectory(source_dir) << "_" << current_datetime;
+            cout << "Files from previous execution are going to be saved in " << ss_dir.str() << endl;
+
+            // create directory
+            mkdir(ss_dir.str().c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);
+
+            for(int counter = 0; counter<listOfFiles.size(); counter++)
+            {
+                // grab a file's name
+                string file_name = listOfFiles[counter];
+
+                // open input stream
+                string input_stream = source_dir + "/" + file_name;
+                ifstream source(input_stream.c_str(), ios::binary);
+
+                // open destination stream
+                string output_stream = ss_dir.str() + "/" + file_name;
+                ofstream dest(output_stream.c_str(), ios::binary);
+
+                // declare iterators
+                istreambuf_iterator<char> begin_source(source);
+                istreambuf_iterator<char> end_source;
+                ostreambuf_iterator<char> begin_dest(dest);
+
+                // copy file
+                copy(begin_source, end_source, begin_dest);
+
+                // close streams
+                source.close();
+                dest.close();
+
+            }
+
+
+        }
     }
 }
 

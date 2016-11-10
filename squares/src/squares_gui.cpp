@@ -21,8 +21,8 @@
 #endif
 
 
-#define POS_SAMPLES_DIR "positive_samples/"
-#define NEG_SAMPLES_DIR "negative_samples/"
+#define POS_SAMPLES_DIR POS_SAMPLES "/"
+#define NEG_SAMPLES_DIR NEG_SAMPLES "/"
 #define SOURCE_FOLDER OUTPUT_FOLDER "/"
 
 using namespace std;
@@ -109,6 +109,10 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     wxImage* temporary_image = new wxImage(string(SOURCE_FOLDER) + images_to_show[check_image], wxBITMAP_TYPE_JPEG);
     temporary_image->Rescale(100, 100);
     image = new wxStaticBitmap(panel, 0, wxBitmap(*temporary_image), wxPoint(175, 110), wxSize(100, 100));
+
+    // save current state
+    saveCurrentState(POS_SAMPLES);
+    saveCurrentState(NEG_SAMPLES);
 
     // delete directories from previous executions
     remove_directory(POS_SAMPLES_DIR);

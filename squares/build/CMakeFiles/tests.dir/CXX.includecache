@@ -27,11 +27,17 @@ unistd.h
 -
 sys/stat.h
 -
+time.h
+-
 cstring
 -
 algorithm
 -
 cmath
+-
+iostream
+-
+fstream
 -
 web_utils.h
 /home/biagio/Documenti/wise_robotics/squares/src/web_utils.h
