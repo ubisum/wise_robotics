@@ -4,6 +4,31 @@
 CMakeFiles/squares.dir/src/squares.cpp.o
  /home/biagio/Documenti/wise_robotics/squares/src/csv.h
  /home/biagio/Documenti/wise_robotics/squares/src/macros.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/allocators.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/document.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/encodedstream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/encodings.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/error/error.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/filereadstream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/biginteger.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/diyfp.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/dtoa.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/ieee754.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/itoa.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/meta.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/pow10.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/stack.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/strfunc.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/strtod.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/swap.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/memorystream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/msinttypes/inttypes.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/msinttypes/stdint.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/rapidjson.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/reader.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/stream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/stringbuffer.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/writer.h
  /home/biagio/Documenti/wise_robotics/squares/src/squares.cpp
  /home/biagio/Documenti/wise_robotics/squares/src/utilities.h
  /home/biagio/Documenti/wise_robotics/squares/src/web_utils.h
@@ -361,7 +386,6 @@ CMakeFiles/squares.dir/src/squares.cpp.o
  /usr/local/include/wx-3.1/wx/wxcrt.h
  /usr/local/include/wx-3.1/wx/wxcrtbase.h
  /usr/local/include/wx-3.1/wx/wxcrtvararg.h
- /usr/local/include/wx-3.1/wx/wxprec.h
  /usr/local/include/wx-3.1/wx/xti.h
  /usr/local/include/wx-3.1/wx/xti2.h
  /usr/local/include/wx-3.1/wx/xtictor.h

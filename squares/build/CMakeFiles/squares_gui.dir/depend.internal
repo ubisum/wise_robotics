@@ -3,6 +3,31 @@
 
 CMakeFiles/squares_gui.dir/src/squares_gui.cpp.o
  /home/biagio/Documenti/wise_robotics/squares/src/macros.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/allocators.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/document.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/encodedstream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/encodings.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/error/error.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/filereadstream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/biginteger.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/diyfp.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/dtoa.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/ieee754.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/itoa.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/meta.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/pow10.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/stack.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/strfunc.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/strtod.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/internal/swap.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/memorystream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/msinttypes/inttypes.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/msinttypes/stdint.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/rapidjson.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/reader.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/stream.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/stringbuffer.h
+ /home/biagio/Documenti/wise_robotics/squares/src/rapidjson/writer.h
  /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.cpp
  /home/biagio/Documenti/wise_robotics/squares/src/squares_gui.h
  /home/biagio/Documenti/wise_robotics/squares/src/utilities.h

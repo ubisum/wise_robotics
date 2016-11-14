@@ -9,10 +9,10 @@
 #include <iostream>
 #include <vector>
 
-#include <wx/wxprec.h>
+/*#include <wx/wxprec.h>
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
-#endif
+#endif*/
 
 
 using namespace std;
@@ -39,9 +39,11 @@ int main(int argn, char* argv[])
 	mkdir(DOWNLOAD_FOLDER, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);
 
         // download images
-        getImagesFromCoordinates(centers, DOWNLOAD_FOLDER, ZOOM_LEVEL, BING_KEY);
+        cout << "Downloading images from Bing..." << endl;
+        getImagesFromCoordinates(centers, DOWNLOAD_FOLDER, BING_KEY);
 
 	// compute squares in images
+        cout << endl << "Starting extraction of samples..." << endl;
 	getSquaresInFolder(DOWNLOAD_FOLDER, SQUARE_SIDE, SQUARE_STEP_ROW, SQUARE_STEP_COL, OUTPUT_FOLDER);
 
 

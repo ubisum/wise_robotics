@@ -1,3 +1,0 @@
-/Users/biagiomontesano/Documents/wise_robotics/test_harris/build/CMakeFiles/edit_cache.dir
-/Users/biagiomontesano/Documents/wise_robotics/test_harris/build/CMakeFiles/rebuild_cache.dir
-/Users/biagiomontesano/Documents/wise_robotics/test_harris/build/CMakeFiles/harris.dir
