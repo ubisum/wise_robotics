@@ -1,0 +1,40 @@
+INSTALLING OPENCV
+- Install required packages:
+a) sudo apt-get install build-essential
+b) sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+c) sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+
+- Git clone of OpenCV's repository
+a) git clone https://github.com/opencv/opencv.git
+
+- Enter opencv directory and create a subdirectory "release"
+
+- Enter directory "release"
+
+- Execute cmake
+a) cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+
+- Make and install library
+a) make
+b) sudo make install
+
+
+INSTALLING CURL
+- Install from shell
+a) sudo apt-get install libcurl4-gnutls-dev
+
+INSTALLING WXWIDGETS
+- Download Linux source files from http://www.wxwidgets.org/downloads/
+
+- Enter WxWidgets folder
+a) ./configure
+b) make
+c) make install
+
+COMPILE SQUARES
+- Git clone of squares
+a) git clone https://github.com/ubisum/wise_robotics.git
+
+- Enter "build folder"
+a) cmake ..
+b) make -j2 (substitute 2 with actual number of cores. E. g.: if four cores are available, execute "make -j4")
