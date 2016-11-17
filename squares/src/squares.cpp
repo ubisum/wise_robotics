@@ -46,6 +46,14 @@ int main(int argn, char* argv[])
         cout << endl << "Starting extraction of samples..." << endl;
 	getSquaresInFolder(DOWNLOAD_FOLDER, SQUARE_SIDE, SQUARE_STEP_ROW, SQUARE_STEP_COL, OUTPUT_FOLDER);
 
+        stringstream training_cmd;
+        training_cmd <<  "opencv_traincascade -data classifier -vec samples.vec -bg negatives.txt" <<
+                         " -numStages " << NUM_STAGES << " -minHitRate " << MIN_HIT_RATE <<
+                         " -maxFalseAlarmRate " << MAX_FALSE_ALARM_RATE << " -numPos " << NUM_POS <<
+                         " -numNeg " << NUM_NEG << " -w " << SQUARE_SIDE << " -h " << SQUARE_SIDE <<
+                         " -mode ALL -precalcValBufSize " << PRE_CALC_VAL_BUF_SIZE <<
+                         " -precalcIdxBufSize " << PRE_CALC_IDX_BUF_SIZE;
 
+        cout << endl << training_cmd.str() << endl;
 
 }

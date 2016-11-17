@@ -54,5 +54,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/squares.dir/DependInfo.cmake"
   "CMakeFiles/squares_gui.dir/DependInfo.cmake"
   "CMakeFiles/train.dir/DependInfo.cmake"
-  "CMakeFiles/tests.dir/DependInfo.cmake"
+  "CMakeFiles/detection.dir/DependInfo.cmake"
   )

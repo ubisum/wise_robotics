@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/biagio/Documenti/wise_robotics/squares/src/squares_api.cpp" "/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/squares_api.dir/src/squares_api.cpp.o"
+  "/home/biagio/Documenti/wise_robotics/squares/src/detection.cpp" "/home/biagio/Documenti/wise_robotics/squares/build/CMakeFiles/detection.dir/src/detection.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

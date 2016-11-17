@@ -174,15 +174,6 @@ CURL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/usr/local/share/OpenCV
 
-//The directory containing a CMake configuration file for WX-CONFIG.
-WX-CONFIG_DIR:PATH=WX-CONFIG_DIR-NOTFOUND
-
-//The directory containing a CMake configuration file for WXWIDGETS.
-WXWIDGETS_DIR:PATH=WXWIDGETS_DIR-NOTFOUND
-
-//The directory containing a CMake configuration file for WX.
-WX_DIR:PATH=WX_DIR-NOTFOUND
-
 //Path to a file.
 _filename:FILEPATH=/usr/local/include/wx-3.1/wx/version.h
 

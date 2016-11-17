@@ -14,7 +14,7 @@ include_directories(${OpenCV_INCLUDE_DIRS} ${CURL_INCLUDE_DIRS})
 add_executable(squares src/squares.cpp)
 add_executable(squares_gui src/squares_gui.cpp)
 add_executable(train src/train.cpp)
-add_executable(tests src/test.cpp)
+add_executable(detection src/detection.cpp)
 
 target_link_libraries(squares ${OpenCV_LIBS} ${CURL_LIBS})
 target_link_libraries(squares curl)
@@ -27,7 +27,5 @@ target_link_libraries(squares_gui curl)
 target_link_libraries(train ${OpenCV_LIBS} ${CURL_LIBS})
 target_link_libraries(train curl)
 
-target_link_libraries(tests ${CURL_LIBS} ${OpenCV_LIBS})
-target_link_libraries(tests curl)
-
-
+target_link_libraries(detection ${OpenCV_LIBS} ${CURL_LIBS})
+target_link_libraries(detection curl)

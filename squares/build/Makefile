@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/biagio/Documenti/wise_robotics/squares/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -150,17 +150,44 @@ train/fast:
 .PHONY : train/fast
 
 #=============================================================================
-# Target rules for targets named tests
+# Target rules for targets named detection
 
 # Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
+detection: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 detection
+.PHONY : detection
 
 # fast build rule for target.
-tests/fast:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-.PHONY : tests/fast
+detection/fast:
+	$(MAKE) -f CMakeFiles/detection.dir/build.make CMakeFiles/detection.dir/build
+.PHONY : detection/fast
+
+src/detection.o: src/detection.cpp.o
+
+.PHONY : src/detection.o
+
+# target to build an object file
+src/detection.cpp.o:
+	$(MAKE) -f CMakeFiles/detection.dir/build.make CMakeFiles/detection.dir/src/detection.cpp.o
+.PHONY : src/detection.cpp.o
+
+src/detection.i: src/detection.cpp.i
+
+.PHONY : src/detection.i
+
+# target to preprocess a source file
+src/detection.cpp.i:
+	$(MAKE) -f CMakeFiles/detection.dir/build.make CMakeFiles/detection.dir/src/detection.cpp.i
+.PHONY : src/detection.cpp.i
+
+src/detection.s: src/detection.cpp.s
+
+.PHONY : src/detection.s
+
+# target to generate assembly for a file
+src/detection.cpp.s:
+	$(MAKE) -f CMakeFiles/detection.dir/build.make CMakeFiles/detection.dir/src/detection.cpp.s
+.PHONY : src/detection.cpp.s
 
 src/squares.o: src/squares.cpp.o
 
@@ -216,33 +243,6 @@ src/squares_gui.cpp.s:
 	$(MAKE) -f CMakeFiles/squares_gui.dir/build.make CMakeFiles/squares_gui.dir/src/squares_gui.cpp.s
 .PHONY : src/squares_gui.cpp.s
 
-src/test.o: src/test.cpp.o
-
-.PHONY : src/test.o
-
-# target to build an object file
-src/test.cpp.o:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.o
-.PHONY : src/test.cpp.o
-
-src/test.i: src/test.cpp.i
-
-.PHONY : src/test.i
-
-# target to preprocess a source file
-src/test.cpp.i:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.i
-.PHONY : src/test.cpp.i
-
-src/test.s: src/test.cpp.s
-
-.PHONY : src/test.s
-
-# target to generate assembly for a file
-src/test.cpp.s:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/test.cpp.s
-.PHONY : src/test.cpp.s
-
 src/train.o: src/train.cpp.o
 
 .PHONY : src/train.o
@@ -276,21 +276,21 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... edit_cache"
 	@echo "... squares"
 	@echo "... rebuild_cache"
 	@echo "... squares_gui"
 	@echo "... train"
-	@echo "... edit_cache"
-	@echo "... tests"
+	@echo "... detection"
+	@echo "... src/detection.o"
+	@echo "... src/detection.i"
+	@echo "... src/detection.s"
 	@echo "... src/squares.o"
 	@echo "... src/squares.i"
 	@echo "... src/squares.s"
 	@echo "... src/squares_gui.o"
 	@echo "... src/squares_gui.i"
 	@echo "... src/squares_gui.s"
-	@echo "... src/test.o"
-	@echo "... src/test.i"
-	@echo "... src/test.s"
 	@echo "... src/train.o"
 	@echo "... src/train.i"
 	@echo "... src/train.s"
