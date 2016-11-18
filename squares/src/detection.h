@@ -29,7 +29,7 @@ void drawRectanglesOverImage(const Mat& image, string file_name, const vector<Re
         Rect current_rect = vectorOfRectangles[index];
 
         // draw rectangle
-        rectangle(input_copy, current_rect, Scalar(255,0,0), 2);
+        rectangle(input_copy, current_rect, Scalar(0,0,255), 2);
     }
 
     // prepare parameters for storing image
@@ -70,10 +70,13 @@ void detectObjects(string classifier_name)
         string current_file = files_list[index];
 
         // try to load image
-        Mat image = imread(current_file, CV_LOAD_IMAGE_GRAYSCALE);
+        stringstream image_path;
+        image_path << DETECTION_FOLDER << "/" << current_file;
+        //cout << DETECTION_FOLDER + '/' + current_file << endl;
+        Mat image = imread(image_path.str());
         if(image.data == NULL)
         {
-            cout << "Cannot load image from file " << current_file << endl;
+            cout << "Cannot load image from file " << current_file << endl << endl;
             continue;
         }
 
@@ -83,12 +86,13 @@ void detectObjects(string classifier_name)
         // convert image to grayscale
         Mat image_gray;
         cvtColor(image, image_gray, CV_BGR2GRAY);
+        //equalizeHist(image_gray, image_gray);
 
         // create a vector of Rect
         vector<Rect> returned_rects;
 
         // detect objects
-        classifier.detectMultiScale(image_gray, returned_rects);
+        classifier.detectMultiScale(image_gray, returned_rects, 1.1, 3, 0/*|CASCADE_SCALE_IMAGE*/, Size(30, 30), Size(50, 50));
 
         // print number of objects
         cout << "Found " << returned_rects.size() << " objects in image " << current_file << endl;

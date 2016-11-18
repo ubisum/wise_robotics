@@ -23,5 +23,9 @@ int main(int argn, char* argv[])
         exit(-1);
     }
 
+    // create output folder
+    remove_directory(DETECT_OUTPUT_FOLDER);
+    mkdir(DETECT_OUTPUT_FOLDER, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);
+
     detectObjects(argv[1]);
 }
