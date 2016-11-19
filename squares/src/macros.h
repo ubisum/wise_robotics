@@ -36,6 +36,7 @@
 #define NUM_STAGES 20
 #define MIN_HIT_RATE 0.999
 #define MAX_FALSE_ALARM_RATE 0.5
+#define NUM_POS_PERC 0.65
 #define NUM_POS 1000
 #define NUM_NEG 600
 #define PRE_CALC_VAL_BUF_SIZE 1024
@@ -48,6 +49,7 @@
 // detection
 #define DETECTION_FOLDER "detection_folder"
 #define DETECT_OUTPUT_FOLDER "detect_output_folder"
+#define DETECT_JSON_FOLDER "json_folder"
 
 // miscellaneous
 #define EARTH_RADIUS 6378137

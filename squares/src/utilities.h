@@ -33,6 +33,7 @@ struct fileInfo
 {
     float lat;
     float lon;
+    int zoom_level;
     int counter;
     int index_x;
     int index_y;
@@ -353,10 +354,10 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         return output;
     }
 
-    coordinate pixelToLatLong(coordinate center, int x, int y, const Mat& lut)
+    coordinate pixelToLatLong(coordinate center, int x, int y, const Mat& lut, int zoom_level=ZOOM_LEVEL)
     {
         // meters per pixel
-        float m_pixel = lut.at<float>(0, ZOOM_LEVEL-1);
+        float m_pixel = lut.at<float>(0, zoom_level-1);
 
         // compute offsets
         float offset_x = (x-center.first)*m_pixel;
@@ -374,7 +375,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         return coordinate(pixel_lat, pixel_lon);
     }
 
-    fileInfo getFileInfo(string file_name)
+    fileInfo getSampleInfo(string file_name)
     {
         // prepare structures
         char buffer[file_name.length()];
@@ -385,7 +386,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         fileInfo info;
 
         // loop over information in file's name
-        for(int i = 0; i<6; i++)
+        for(int i = 0; i<7; i++)
         {
             switch(i)
             {
@@ -410,12 +411,21 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
                 case 2:
                     {
                         pointer = strtok(NULL, "_");
+                        string z_level(pointer);
+                        info.zoom_level = atoi(z_level.c_str());
+                        break;
+
+                    }
+
+                case 3:
+                    {
+                        pointer = strtok(NULL, "_");
                         string cnt(pointer);
                         info.counter = atoi(cnt.c_str());
                         break;
                     }
 
-                case 3:
+                case 4:
                     {
                         pointer = strtok(NULL, "_");
                         string index(pointer);
@@ -423,7 +433,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
                         break;
                     }
 
-                case 4:
+                case 5:
                     {
                         pointer = strtok(NULL, "_");
                         string index(pointer);
@@ -445,7 +455,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         return info;
     }
 
-    void printCentersOfSquares(vector<fileInfo> info_vector, string file_name)
+    /*void printCentersOfSquares(vector<fileInfo> info_vector, string file_name)
     {
         // open and prepare file
         remove(file_name.c_str());
@@ -491,7 +501,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         }
 
         fclose(fid);
-    }
+    }*/
 
     // retireves information about an image from its name
     vector<fileInfo> getInfoFromImages(string folder_path)
@@ -505,7 +515,7 @@ void getSquaresFromImage(string img_path, int square_side, int square_step_row, 
         // loop over list of files
         for(int i = 0; i<list_of_files.size(); i++)
         {
-            fileInfo info = getFileInfo(list_of_files[i]);
+            fileInfo info = getSampleInfo(list_of_files[i]);
             info_vector.push_back(info);
         }
 

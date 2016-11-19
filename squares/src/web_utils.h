@@ -191,7 +191,7 @@ namespace utilities
                     replace(first_string.begin(), first_string.end(), '.', 'x');
                     replace(second_string.begin(), second_string.end(), '.', 'x');
 
-                    file_name << output_path << "/" << first_string << "_" << second_string;
+                    file_name << output_path << "/" << first_string << "_" << second_string << "_" << available_level;
 
                     // add extension
                     switch(type)

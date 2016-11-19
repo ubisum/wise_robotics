@@ -44,11 +44,12 @@ int main()
 
     // training
     cout << "Traininig..." << endl;
+    vector<string> filesList = getFilesList("negative_samples");
     stringstream training_cmd;
     training_cmd <<  "opencv_traincascade -data classifier -vec samples.vec -bg negatives.txt" <<
                      " -numStages " << NUM_STAGES << " -minHitRate " << MIN_HIT_RATE <<
                      " -maxFalseAlarmRate " << MAX_FALSE_ALARM_RATE << " -numPos " << NUM_POS <<
-                     " -numNeg " << NUM_NEG << " -w " << SQUARE_SIDE << " -h " << SQUARE_SIDE <<
+                     " -numNeg " << /*NUM_NEG*/ filesList.size() << " -w " << SQUARE_SIDE << " -h " << SQUARE_SIDE <<
                      " -mode ALL -precalcValBufSize " << PRE_CALC_VAL_BUF_SIZE <<
                      " -precalcIdxBufSize " << PRE_CALC_IDX_BUF_SIZE;
     //execute_command(TRAINING_CMD);
