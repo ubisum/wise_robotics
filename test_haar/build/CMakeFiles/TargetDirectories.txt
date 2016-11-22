@@ -1,3 +1,0 @@
-/home/biagio/Documenti/wise_robotics/test_haar/build/CMakeFiles/edit_cache.dir
-/home/biagio/Documenti/wise_robotics/test_haar/build/CMakeFiles/rebuild_cache.dir
-/home/biagio/Documenti/wise_robotics/test_haar/build/CMakeFiles/test_haar.dir

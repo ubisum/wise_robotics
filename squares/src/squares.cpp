@@ -32,7 +32,7 @@ int main(int argn, char* argv[])
 
 	// remove output directories from previous execution
 	remove_directory(OUTPUT_FOLDER);
-	remove_directory(DOWNLOAD_FOLDER);
+        remove_directory(DOWNLOAD_FOLDER);
 
 	// recreate output directory
 	mkdir(OUTPUT_FOLDER, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH | S_IWOTH);

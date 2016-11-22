@@ -101,6 +101,7 @@ void createJSONFromRects(string image_name, vector<Rect> objects_locations)
         cout << "Detection error: image name is not in format lat_lon_zoom" << endl;
         exit(-1);
     }
+
     string longitude(coord_ptr);
     replace(longitude.begin(), longitude.end(), 'x', '.');
 
@@ -214,7 +215,7 @@ void detectObjects(string classifier_name)
         // convert image to grayscale
         Mat image_gray;
         cvtColor(image, image_gray, CV_BGR2GRAY);
-        equalizeHist(image_gray, image_gray);
+        //equalizeHist(image_gray, image_gray);
 
         // create a vector of Rect
         vector<Rect> returned_rects;

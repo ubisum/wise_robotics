@@ -138,7 +138,8 @@ namespace utilities
             else
             {
                 allowed_zoom = current_level;
-                cout << "Found image at zoom " << current_level << endl;
+                cout << "Found image at (" << to_string(center.first) << ", " << to_string(center.second) <<
+                        ") at zoom level " << current_level << endl;
                 break;
             }
 

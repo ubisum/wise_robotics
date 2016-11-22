@@ -2,14 +2,14 @@
 #define MACROS_H
 
 // squares extraction
-#define SQUARE_SIDE 50
+#define SQUARE_SIDE 80
 #define SQUARE_STEP_ROW 15
 #define SQUARE_STEP_COL 15
 #define OUTPUT_FOLDER "output_images"
 
 // images download
 #define MIN_ZOOM_LEVEL 15
-#define ZOOM_LEVEL 21
+#define ZOOM_LEVEL 19
 #define DOWNLOAD_FOLDER "download_folder"
 #define BING_KEY "AkNXb92bZ-WiPqH4BmlhYj_piINlOW_rpon5CPEZ8xuhNXUdxhsKeKw6NRpN0ACC"
 
