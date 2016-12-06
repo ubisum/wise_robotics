@@ -37,10 +37,10 @@
 #define MIN_HIT_RATE 0.999
 #define MAX_FALSE_ALARM_RATE 0.5
 #define NUM_POS_PERC 0.65
-#define NUM_POS 1000
-#define NUM_NEG 600
-#define PRE_CALC_VAL_BUF_SIZE 1024
-#define PRE_CALC_IDX_BUF_SIZE 1024
+#define NUM_POS 400
+#define NUM_NEG 500
+#define PRE_CALC_VAL_BUF_SIZE 2048
+#define PRE_CALC_IDX_BUF_SIZE 2048
 #define TRAINING_CMD "opencv_traincascade -data classifier -vec samples.vec -bg negatives.txt\
 -numStages 20 -minHitRate 0.999 -maxFalseAlarmRate 0.5 -numPos 1000\
 -numNeg 600 -w 80 -h 40 -mode ALL -precalcValBufSize 1024\

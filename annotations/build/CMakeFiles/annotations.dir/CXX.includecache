@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/biagio/Documenti/wise_robotics/annotations/src/annotations.cpp
+cmd_utils.h
+/home/biagio/Documenti/wise_robotics/annotations/src/cmd_utils.h
+iostream
+-
+
+/home/biagio/Documenti/wise_robotics/annotations/src/cmd_utils.h
+iostream
+-
+stdexcept
+-
+stdio.h
+-
+string
+-
+

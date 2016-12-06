@@ -52,6 +52,9 @@ int main()
                      " -numNeg " << /*NUM_NEG*/ filesList.size() << " -w " << SQUARE_SIDE << " -h " << SQUARE_SIDE <<
                      " -mode ALL -precalcValBufSize " << PRE_CALC_VAL_BUF_SIZE <<
                      " -precalcIdxBufSize " << PRE_CALC_IDX_BUF_SIZE;
+
+    cout << training_cmd.str() << endl << endl;
+
     //execute_command(TRAINING_CMD);
     cout << "Done." << endl << endl;
 }
